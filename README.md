@@ -29,8 +29,8 @@ The server api contains a single endpoint for seaching github users based on pro
 ```
 ##### Params descriptions
 
-1. language: one or more comma separated programming languages, The primary language should be the first if more than one language is provided. Other languages provided will be used as fallback if no result is return for the primary language.
+1. `language`: one or more comma separated programming languages, The primary language should be the first if more than one language is provided. Other languages provided will be used as fallback if no result is return for the primary language.
 
-2. username: The guthub username of the user.
+2. `username`: The guthub username of the user.
 
 Both query params, `language` and `username` are required, the api will return a validation error if either is not provided.
