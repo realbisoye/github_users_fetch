@@ -8,6 +8,5 @@ if (result.error) {
 }
 
 app.listen(app.get('port'), (): void => {
-    logger.log('\x1b[36m%s\x1b[0m', // eslint-disable-line
-    `🌏 Express server started at http://localhost:${app.get('port')}`);
+  logger.info(`🌏 Express server started at http://localhost:${app.get('port')}`);
 });

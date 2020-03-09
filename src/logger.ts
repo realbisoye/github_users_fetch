@@ -1,7 +1,7 @@
 import {
   createLogger,
   format,
-  transports
+  transports,
 } from 'winston';
 
 const logTransports = [
@@ -13,25 +13,29 @@ const logTransports = [
         if (key === 'error') {
           return {
             message: (value as Error).message,
-            stack: (value as Error).stack
+            stack: (value as Error).stack,
           };
         }
         return value;
-      }
-    })
+      },
+    }),
   }),
-  new transports.Console({
-    level: 'debug',
-    format: format.prettyPrint()
-  })
 ];
 
 const logger = createLogger({
+  level: 'info',
   format: format.combine(
+    format.simple(),
     format.timestamp()
   ),
   transports: logTransports,
-  defaultMeta: { service: 'api' }
+  defaultMeta: { service: 'api' },
 });
+
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new transports.Console({
+    level: 'debug',
+  }));
+}
 
 export default logger;

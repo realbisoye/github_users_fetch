@@ -1,24 +1,17 @@
 import { Router } from 'express';
-import swaggerUi from 'swagger-ui-express';
-import apiSpec from '../openapi.json';
-
-import * as BookController from './controllers/book';
-
-const swaggerUiOptions = {
-  customCss: '.swagger-ui .topbar { display: none }'
-};
+import { Joi, celebrate, Segments } from 'celebrate';
+import { searchUser } from './controllers/search';
 
 const router = Router();
 
-// Book routes
-router.post('/book/add', BookController.add);
-router.get('/book/all', BookController.all);
-router.get('/book/search', BookController.search);
+const queryValidation = celebrate({
+  [Segments.QUERY]: Joi.object().keys({
+    username: Joi.string().required(),
+    language: Joi.string().required(),
+  }),
+});
 
-// Dev routes
-if (process.env.NODE_ENV === 'development') {
-  router.use('/dev/api-docs', swaggerUi.serve);
-  router.get('/dev/api-docs', swaggerUi.setup(apiSpec, swaggerUiOptions));
-}
+// Search route
+router.get('/search', queryValidation, searchUser);
 
 export default router;
