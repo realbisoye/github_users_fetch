@@ -1,18 +1,17 @@
-FROM node:10
+FROM node:12.3.1
 
 # Add package file
 COPY package*.json ./
-
 # Install deps
-RUN npm i
+RUN yarn
 
 # Copy source
 COPY . .
 
 # Build dist
-RUN npm run build
+RUN yarn build
 
 # Expose port 3000
 EXPOSE 3000
 
-CMD npm run start
+CMD yarn start
