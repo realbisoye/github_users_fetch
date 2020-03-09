@@ -7,6 +7,9 @@
 - Follow [this](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) guide to generate a github token, copy the token and set the value of `GITHUB_API_KEY` in your .env file as the token. Ensure both the `repo` and `user` scope are selected when creating the token.
 - Run `yarn run dev` to spin up the development server.
 
+## Running tests
+Use the command `yarn test` or `npm run test`.
+
 ## Packaging and Deployment
 #### 1. Run with docker-compose
 
