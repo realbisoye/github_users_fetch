@@ -1,8 +1,6 @@
 /* eslint-disable global-require */
 import request from 'supertest';
 import app from '../src/app';
-import { searchQuery } from '../src/query/search';
-import { userDataQuery } from '../src/query/user';
 
 jest.mock('node-fetch', () => require('fetch-mock').sandbox());
 
